@@ -1,0 +1,113 @@
+========================================
+GO WEB SERVER SETUP COMMANDS
+============================
+
+## PROJECT INITIALIZATION
+
+# Initialize Go module
+
+go mod init go-web-server
+
+---
+
+## INSTALL REQUIRED PACKAGES
+
+# PostgreSQL driver
+
+go get -u github.com/lib/pq
+
+# Swagger CLI tool (install globally)
+
+go install github.com/swaggo/swag/cmd/swag@latest
+
+# Swagger UI handler
+
+go get -u github.com/swaggo/http-swagger
+
+# Swagger static files
+
+go get -u github.com/swaggo/files
+
+---
+
+## CLEAN & VERIFY DEPENDENCIES
+
+# Clean unused dependencies
+
+go mod tidy
+
+---
+
+## GENERATE SWAGGER DOCS
+
+# Generate Swagger documentation
+
+swag init
+
+# If models or external packages not detected
+
+swag init --parseDependency --parseInternal
+
+---
+
+## RUN SERVER
+
+# Run Go server
+
+go run main.go
+
+---
+
+## TEST API (OPTIONAL - CURL)
+
+# Get all users
+
+curl http://localhost:8080/users
+
+# Create user
+
+curl -X POST http://localhost:8080/user/create 
+-H "Content-Type: application/json" 
+-d '{"name":"Sufyan","email":"[sufyan@gmail.com](mailto:sufyan@gmail.com)"}'
+
+# Get user by ID
+
+curl "http://localhost:8080/user/get?id=1"
+
+# Update user
+
+curl -X PUT "http://localhost:8080/user/update?id=1" 
+-H "Content-Type: application/json" 
+-d '{"name":"Updated","email":"[updated@gmail.com](mailto:updated@gmail.com)"}'
+
+# Delete user
+
+curl -X DELETE "http://localhost:8080/user/delete?id=1"
+
+---
+
+## SWAGGER UI
+
+# Open in browser
+
+http://localhost:8080/swagger/index.html
+
+---
+
+## IMPORTANT NOTES
+
+1. Always run 'swag init' after modifying Swagger comments
+
+2. Restart server after generating docs
+
+3. Ensure this import exists in main.go:
+   _ "go-web-server/docs"
+
+4. Ensure route is correct:
+   http.Handle("/swagger/", httpSwagger.WrapHandler)
+
+5. PostgreSQL must be running before starting server
+
+---
+
+## END

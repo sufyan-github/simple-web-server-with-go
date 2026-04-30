@@ -4,6 +4,7 @@ import (
 	"net/http"
 	"go-web-server/config"
 	"go-web-server/routes"
+	_ "go-web-server/docs"
 )
 
 
