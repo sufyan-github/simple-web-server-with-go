@@ -1,0 +1,94 @@
+==============================
+GO WEB SERVER API TEST FILE
+==============================
+
+Base URL:
+http://localhost:8080
+
+--------------------------------
+1. GET ALL USERS
+--------------------------------
+Method: GET
+
+curl:
+curl http://localhost:8080/users
+
+
+--------------------------------
+2. CREATE USER
+--------------------------------
+Method: POST
+
+curl:
+curl -X POST http://localhost:8080/user/create \
+-H "Content-Type: application/json" \
+-d '{
+  "name": "Sufyan",
+  "email": "sufyan@gmail.com"
+}'
+
+
+--------------------------------
+3. GET SINGLE USER
+--------------------------------
+Method: GET
+
+Example:
+http://localhost:8080/user/get?id=1
+
+curl:
+curl "http://localhost:8080/user/get?id=1"
+
+
+--------------------------------
+4. UPDATE USER
+--------------------------------
+Method: PUT
+
+Example:
+http://localhost:8080/user/update?id=1
+
+curl:
+curl -X PUT "http://localhost:8080/user/update?id=1" \
+-H "Content-Type: application/json" \
+-d '{
+  "name": "Updated Name",
+  "email": "updated@gmail.com"
+}'
+
+
+--------------------------------
+5. DELETE USER
+--------------------------------
+Method: DELETE
+
+Example:
+http://localhost:8080/user/delete?id=1
+
+curl:
+curl -X DELETE "http://localhost:8080/user/delete?id=1"
+
+
+--------------------------------
+NOTES
+--------------------------------
+1. Always run server first:
+   go run main.go
+
+2. Make sure PostgreSQL is running
+
+3. IDs are auto-generated (SERIAL)
+
+4. Use Postman if curl feels hard
+
+--------------------------------
+EXPECTED FLOW
+--------------------------------
+POST → creates user
+GET → fetch users
+PUT → update user
+DELETE → remove user
+
+--------------------------------
+END
+--------------------------------

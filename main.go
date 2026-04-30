@@ -1,17 +1,21 @@
 package main
 
 import (
-	"fmt"
 	"net/http"
+	"go-web-server/config"
 	"go-web-server/routes"
 )
 
-func main(){
-	fmt.Println("Starting the server on port 8080...")
 
-	// Load routes
+// @title Go Web Server API
+// @version 1.0
+// @description This is a sample server in Go
+// @host localhost:8080
+// @BasePath /
+
+func main() {
+	config.ConnectDB()
 	routes.RegisterRoutes()
 
-	// Start the server
-	http.ListenAndServe(":8080",nil)
+	http.ListenAndServe(":8080", nil)
 }
